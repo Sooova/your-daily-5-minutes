@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <link rel="stylesheet" href = "assets/css/style.css">
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -7,7 +8,8 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<head>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +29,7 @@
 <body id='ldChange'>
     <div id="container">
         <div id='settings' class='modal'>
-          <div class="video-dropdown"
+          <div class="video-dropdown">
             <h3>Select your video preference:</h3>
             <select name="gaming" id="gaming">
               <option value="gaming">Gaming</option>
@@ -87,6 +89,25 @@
             </select>
             <a href="#" rel="modal:close">Close</a>
           </div>
+          <div class="song-settings">
+            <h2>Song preferences</h2>
+            <section class="song-not-authorized">
+              <h3>Link Spotify Account</h3>
+              <p>For additional features link your spotify account.</p>
+              <ul>
+                <li>Basic Spotify Account - Customized song recommendations</li>
+                <li>Premium Spotify Account - Customized song recommendations + In browser player</li>
+              </ul>
+              <button onclick="linkSpotifyAccount()">Link and Authorize</button>
+            </section>
+            <section class="song-is-authorized">
+              <h2>Recommend Songs Like</h2>
+              <p>Provide up to 5 artists or songs to base recommendations off. If none are provided, if you've connected your spotify account your top 5 artists will be used. If no spotify account is connected and no artists and songs are provided, we will choose at random.</p>
+              <select class="spotify-pref" name="spotifypref[]" multiple="multiple">
+              </select>
+              <button onclick="saveSongPref()">Save Song Preferences</button>
+            </section>
+          </div>
         </div>
         <div>
           <p><a href="#settings" rel="modal:open">Open Modal</a></p>
@@ -116,8 +137,10 @@
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
         </div>
         <div class = "cards music">
-            <h2>Music</h2>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            <h2>Song Recommendations</h2>
+            <p id="song-rec">
+
+            </p>
         </div>
     </div>
     <div class="video-container">
@@ -134,5 +157,9 @@ src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
 <script src="./assets/js/video.js"></script>
+<script src="./assets/js/song-constants.js"></script>
+<script src="./assets/js/song.js"></script>
 </html>
